@@ -34,9 +34,12 @@ ALTER USER SA SET LOCAL TRUE
 CREATE SCHEMA PUBLIC AUTHORIZATION DBA
 SET SCHEMA PUBLIC
 CREATE SEQUENCE PUBLIC.ARTICLE_SEQ AS INTEGER START WITH 1
+CREATE SEQUENCE PUBLIC.COMMENT_SEQ AS INTEGER START WITH 1
 CREATE MEMORY TABLE PUBLIC.ARTICLES(ID INTEGER NOT NULL PRIMARY KEY,AUTHOR VARCHAR(250),CREATE_TIMESTAMP TIMESTAMP,TEXT VARCHAR(2000),TITLE VARCHAR(250))
+CREATE MEMORY TABLE PUBLIC.COMMENTS(ID INTEGER NOT NULL PRIMARY KEY,AUTHOR VARCHAR(250),CREATED_DATE TIMESTAMP,TEXT VARCHAR(2000),ARTICLE_ID INTEGER)
 ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
-ALTER SEQUENCE PUBLIC.ARTICLE_SEQ RESTART WITH 12
+ALTER SEQUENCE PUBLIC.ARTICLE_SEQ RESTART WITH 13
+ALTER SEQUENCE PUBLIC.COMMENT_SEQ RESTART WITH 3
 SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
@@ -58,3 +61,6 @@ INSERT INTO ARTICLES VALUES(8,'Greg Young','2016-01-20 08:49:55.111000','Hopeful
 INSERT INTO ARTICLES VALUES(9,'Greg Young','2016-01-20 08:50:19.754000','I had an interesting question when sitting with a client today. The Event Store supports internally role based security through ACLs they would prefer to use a claim based system with it. An interesting idea, is there a reasonably easy way to do this? Well yes but it requires a bit of coding around (would be a nice thing to have in a library somewhere *wink wink*). The general idea with claims based security is that something else will do the authentication and the application will act only on a series of claims that are given. In this particular example they want to control access to streams based upon claims about the user and to do it in a reasonably generic way.','Another Security Model')
 INSERT INTO ARTICLES VALUES(10,'Martin Fowler','2016-01-20 08:50:57.243000','A key part of the design and delivery approach I advocate is using automated regression tests as a bug-detection mechanism. This is vital both to reduce bugs and to enable refactoring. A common problem I\u2019ve run into is when test suites decay due to tests failing unpredictably. Therefore it\u2019s important to understand the common causes of this non-determinism: lack of isolation, asynchronous behavior, remote services, time, and resource leaks. Once you get the hang of why these are happening you are well on your way to fixing them and getting a regression suite you can rely on.','Eradicating Non-Determinism')
 INSERT INTO ARTICLES VALUES(11,'Author Name','2021-04-13 11:06:48.185000','Article text','Article Title')
+INSERT INTO ARTICLES VALUES(12,'Author Name 2','2021-04-13 17:42:33.389000','Article text 2','Article Title 2')
+INSERT INTO COMMENTS VALUES(1,'John New','2021-04-13 17:45:13.782000','Comment text',4)
+INSERT INTO COMMENTS VALUES(2,'John New','2021-04-13 17:45:40.501000','Comment text 5',4)
