@@ -20,4 +20,9 @@ public interface ArticleDAO {
      * Persists {@link Article} into the DB
      */
     void persist(Article article);
+
+    /**
+     * Returns {@link Article}s where author, title or text contains the searchText
+     */
+    List<Article> searchArticle(String searchText);
 }

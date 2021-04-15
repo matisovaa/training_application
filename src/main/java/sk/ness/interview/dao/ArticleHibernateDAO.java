@@ -36,4 +36,9 @@ public class ArticleHibernateDAO implements ArticleDAO {
         this.sessionFactory.getCurrentSession().saveOrUpdate(article);
     }
 
+    @Override
+    public List<Article> searchArticle(final String searchText) {
+        String s = "select * from articles WHERE author LIKE :searchString or title LIKE :searchString or text LIKE :searchString";
+        return this.sessionFactory.getCurrentSession().createSQLQuery(s).addEntity(Article.class).setString("searchString", "%" + searchText + "%").list();
+    }
 }

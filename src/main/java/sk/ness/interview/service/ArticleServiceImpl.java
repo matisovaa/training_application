@@ -42,4 +42,9 @@ public class ArticleServiceImpl implements ArticleService {
         throw new UnsupportedOperationException("Article ingesting not implemented.");
     }
 
+    @Override
+    public List<Article> searchArticle(String searchText) {
+        return this.articleDAO.searchArticle(searchText);
+    }
+
 }
