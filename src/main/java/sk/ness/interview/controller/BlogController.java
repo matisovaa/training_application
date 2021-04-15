@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import sk.ness.interview.domain.Article;
+import sk.ness.interview.domain.ArticleWithComments;
 import sk.ness.interview.domain.Comment;
 import sk.ness.interview.dto.Author;
 import sk.ness.interview.dto.AuthorStats;
@@ -41,7 +42,8 @@ public class BlogController {
 
     @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
     public Article getArticle(@PathVariable final Integer articleId) {
-        return this.articleService.findByID(articleId);
+        //return this.articleService.findByID(articleId);
+        return new ArticleWithComments(this.articleService.findByID(articleId), this.commentService.findCommentsByArticleID(articleId));
     }
 
     @RequestMapping(value = "articles/search/{searchText}", method = RequestMethod.GET)
