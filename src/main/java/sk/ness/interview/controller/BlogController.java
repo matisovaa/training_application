@@ -42,7 +42,6 @@ public class BlogController {
 
     @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
     public Article getArticle(@PathVariable final Integer articleId) {
-        //return this.articleService.findByID(articleId);
         return new ArticleWithComments(this.articleService.findByID(articleId), this.commentService.findCommentsByArticleID(articleId));
     }
 
