@@ -3,6 +3,7 @@ package sk.ness.interview.service;
 import java.util.List;
 
 import sk.ness.interview.domain.Article;
+import sk.ness.interview.domain.ArticleWithComments;
 
 /**
  * Service should be used as a gateway to {@link Article} world and handle all article related manipulation.
@@ -15,6 +16,12 @@ public interface ArticleService {
      * Returns {@link Article} with provided ID
      */
     Article findByID(Integer articleId);
+
+    /**
+     * Returns {@link ArticleWithComments} with provided ID
+     */
+    ArticleWithComments findByIDDetail(Integer articleId);
+
 
     /**
      * Returns all available {@link Article}s

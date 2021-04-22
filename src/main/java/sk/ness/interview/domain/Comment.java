@@ -2,15 +2,7 @@ package sk.ness.interview.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "comments")
@@ -26,8 +18,11 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comments_seq_store")
     private Integer id;
 
-    @Column(name = "article_id")
-    private Integer articleId;
+    //@Column(name = "article_id")
+    //private Integer articleId;
+    @ManyToOne
+    @JoinColumn(name="articles.id", nullable=false)
+    private ArticleWithComments article;
 
     @Column(name = "author", length = 250)
     private String author;
@@ -47,14 +42,23 @@ public class Comment {
         this.id = id;
     }
 
-    public Integer getArticleId() {
-        return articleId;
+    public ArticleWithComments getArticle() {
+        return article;
     }
 
-    public void setArticleId(Integer articleId) {
-        this.articleId = articleId;
+    public void setArticle(ArticleWithComments article) {
+        this.article = article;
     }
-    
+
+    /*
+        public Integer getArticleId() {
+            return articleId;
+        }
+
+        public void setArticleId(Integer articleId) {
+            this.articleId = articleId;
+        }
+        */
     public String getAuthor() {
         return author;
     }

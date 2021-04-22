@@ -3,6 +3,7 @@ package sk.ness.interview.dao;
 import java.util.List;
 
 import sk.ness.interview.domain.Article;
+import sk.ness.interview.domain.ArticleWithComments;
 
 public interface ArticleDAO {
 
@@ -10,6 +11,11 @@ public interface ArticleDAO {
      * Returns {@link Article} with provided ID
      */
     Article findByID(Integer articleId);
+
+    /**
+     * Returns {@link ArticleWithComments} with provided ID
+     */
+    ArticleWithComments findByIDDetail(Integer articleId);
 
     /**
      * Returns all available {@link Article}s

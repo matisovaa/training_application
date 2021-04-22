@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "articles")
+@SequenceGenerator(name = "articles_seq_store", sequenceName = "article_seq", allocationSize = 1)
 public class ArticleWithComments extends Article {
 
     public ArticleWithComments() {
@@ -19,6 +22,7 @@ public class ArticleWithComments extends Article {
         this.setArticleComments(comments);
     }
 
+    @OneToMany(mappedBy="article")
     private List<Comment> articleComments = new ArrayList<Comment>(0);
 
     public List<Comment> getArticleComments() {

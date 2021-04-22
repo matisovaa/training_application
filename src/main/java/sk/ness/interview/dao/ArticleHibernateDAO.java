@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import sk.ness.interview.domain.Article;
+import sk.ness.interview.domain.ArticleWithComments;
 
 /**
  * DAO for {@link Article} related DB operations
@@ -23,6 +24,11 @@ public class ArticleHibernateDAO implements ArticleDAO {
     @Override
     public Article findByID(final Integer articleId) {
         return (Article) this.sessionFactory.getCurrentSession().get(Article.class, articleId);
+    }
+
+    @Override
+    public ArticleWithComments findByIDDetail(Integer articleId) {
+        return (ArticleWithComments) this.sessionFactory.getCurrentSession().get(ArticleWithComments.class, articleId);
     }
 
     @SuppressWarnings("unchecked")

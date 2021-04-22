@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import sk.ness.interview.dao.ArticleDAO;
 import sk.ness.interview.domain.Article;
+import sk.ness.interview.domain.ArticleWithComments;
 
 /**
  * Service should be used as a gateway to {@link Article} world and handle all article related manipulation.
@@ -28,6 +29,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article findByID(final Integer articleId) {
         return this.articleDAO.findByID(articleId);
+    }
+
+    @Override
+    public ArticleWithComments findByIDDetail(final Integer articleId) {
+        return this.articleDAO.findByIDDetail(articleId);
     }
 
     @Override

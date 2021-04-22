@@ -2,19 +2,9 @@ package sk.ness.interview.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "articles")
-@SequenceGenerator(name = "articles_seq_store", sequenceName = "article_seq", allocationSize = 1)
+@MappedSuperclass
 public class Article {
 
   public Article() {
